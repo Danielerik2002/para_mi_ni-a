@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi pulguita 💗</title>
+<style>
+  :root { --pink:#ffb7d5; --deep:#170d35; --lav:#c8b8ff; --cream:#fff5fb; }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; color:var(--cream);
+    font-family: "Trebuchet MS", system-ui, sans-serif;
+    background:
+      radial-gradient(ellipse at 20% 15%, #713b9b80 0, transparent 35%),
+      radial-gradient(ellipse at 80% 70%, #b23d8170 0, transparent 32%),
+      linear-gradient(145deg,#080b25,#21113d 55%,#401744);
+    overflow-x:hidden;
+  }
+  #stars { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .star { position:absolute; background:#fff; border-radius:50%; animation:twinkle 3s infinite ease-in-out; opacity:.65; }
+  @keyframes twinkle { 0%,100%{opacity:.25;transform:scale(.8)} 50%{opacity:1;transform:scale(1.25)} }
+  .float-heart { position:fixed; bottom:-40px; z-index:0; pointer-events:none; animation:rise linear forwards; opacity:.7; }
+  @keyframes rise { to { transform:translateY(-115vh) rotate(25deg); opacity:0; } }
+  main { position:relative; z-index:1; width:min(1000px,92%); margin:auto; padding:42px 0 55px; }
+  .hero { text-align:center; padding:22px 10px 30px; }
+  .moon { font-size:2.8rem; filter:drop-shadow(0 0 18px #ffc5e8); }
+  h1 { font-family: Georgia,serif; font-weight:normal; font-size:clamp(2.2rem,7vw,4.4rem); margin:10px 0; color:#ffe4f2; text-shadow:0 0 22px #f58ccf75; }
+  .subtitle { max-width:610px; margin:0 auto; line-height:1.7; color:#e8d8f7; }
+  .enter-note { margin-top:18px; color:#ffd2e7; font-size:.95rem; }
+  .controls { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:24px 0 30px; }
+  button { font:inherit; cursor:pointer; border:1px solid #ffffff35; color:#fff; background:#ffffff12; border-radius:999px; padding:11px 17px; transition:.2s; }
+  button:hover { transform:translateY(-2px); background:#ffffff24; }
+  .primary { color:#421a43; background:linear-gradient(135deg,#ffd4e7,#cbbcff); border:0; font-weight:bold; box-shadow:0 5px 22px #e7a2e533; }
+  h2 { font-family:Georgia,serif; font-weight:normal; text-align:center; font-size:1.8rem; color:#ffe1f0; margin:12px 0 8px; }
+  .section-note { text-align:center; color:#d9c8ee; margin:0 0 22px; }
+  .letters { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; }
+  .letter-card { min-height:175px; padding:18px 14px; border:1px solid #ffffff25; border-radius:20px; background:linear-gradient(145deg,#ffffff13,#ffffff07); box-shadow:0 12px 30px #05031335; text-align:center; cursor:pointer; transition:transform .25s,border-color .25s,background .25s; }
+  .letter-card:hover { transform:translateY(-5px) rotate(-.5deg); border-color:#ffc5e8a0; background:linear-gradient(145deg,#ffffff20,#ffffff0c); }
+  .envelope { font-size:2.7rem; display:block; margin:2px 0 12px; filter:drop-shadow(0 5px 10px #f69cc933); }
+  .letter-card h3 { margin:0 0 8px; font-size:1.03rem; color:#ffe3f0; }
+  .letter-card p { margin:0; color:#d8c9e8; font-size:.88rem; line-height:1.5; }
+  .special { border-color:#ffb7d570; background:linear-gradient(145deg,#a7447840,#ffffff0b); }
+  footer { text-align:center; color:#cdbddd; font-size:.88rem; margin:36px 0 0; line-height:1.7; }
+  .modal { position:fixed; inset:0; z-index:5; display:none; place-items:center; padding:18px; background:#070517c9; backdrop-filter:blur(8px); }
+  .modal.show { display:grid; }
+  .paper { width:min(620px,100%); max-height:85vh; overflow:auto; position:relative; padding:30px clamp(20px,5vw,42px); border:1px solid #ffd1e9a0; border-radius:24px; color:#4d2949; background:linear-gradient(150deg,#fff8fc,#f5eaff); box-shadow:0 20px 90px #0008; animation:pop .25s ease-out; }
+  @keyframes pop { from { opacity:0; transform:translateY(15px) scale(.97); } to { opacity:1; transform:none; } }
+  .paper .emoji { text-align:center; font-size:2.3rem; }
+  .paper h2 { color:#8c3f76; margin:10px 0 18px; }
+  .paper .message { white-space:pre-line; line-height:1.85; font-size:1rem; }
+  .close { position:absolute; right:12px; top:12px; color:#6d3b65; border-color:#8c3f762e; }
+  .signature { margin-top:22px; text-align:right; font-family:Georgia,serif; font-style:italic; color:#9b4d83; }
+  .secret { display:none; text-align:center; margin-top:18px; color:#ffe0ef; line-height:1.7; }
+  .secret.show { display:block; animation:pop .3s ease; }
+  @media(max-width:480px) { main{padding-top:25px}.letters{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.letter-card{padding:14px 9px;min-height:165px}.envelope{font-size:2.2rem}.letter-card h3{font-size:.92rem}.letter-card p{font-size:.8rem} }
+</style>
+</head>
+<body>
+<div id="stars" aria-hidden="true"></div>
+<main>
+  <header class="hero">
+    <div class="moon">🌙✨</div>
+    <h1>Para mi pulguita</h1>
+    <p class="subtitle">Hice este pequeño rincón pensando en ti. Aquí tienes algunas palabras, abrazos escritos y pedacitos de mi corazón para abrir cuando quieras. No tienes que leerlas todas hoy. 💗</p>
+    <p class="enter-note">♡ Elige un sobre y descubre tu carta ♡</p>
+    <div class="controls">
+      <button class="primary" id="surpriseBtn">💌 Elige una carta por mí</button>
+      <button id="heartBtn">✨ Llenar la pantalla de amor</button>
+    </div>
+  </header>
+
+  <section>
+    <h2>Un sobre para cada momento</h2>
+    <p class="section-note">Para los días bonitos, los difíciles y todos los que están en medio.</p>
+    <div class="letters" id="letters"></div>
+  </section>
+
+  <div class="secret" id="secret">
+    <div style="font-size:2rem">🫂💗🫂</div>
+    <strong>Un abrazo enorme para ti.</strong><br>
+    Respira despacito, mi niña. No tienes que poder con todo en este instante.
+  </div>
+
+  <footer>
+    Hecho con mucho cariño, solo para ti. 💗<br>
+    <span>Si hoy no tienes ganas de hablar, está bien. Aquí también hay espacio para el silencio.</span>
+  </footer>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <article class="paper">
+    <button class="close" id="closeBtn" aria-label="Cerrar carta">✕</button>
+    <div class="emoji" id="modalEmoji">💌</div>
+    <h2 id="modalTitle">Una carta para ti</h2>
+    <div class="message" id="modalMessage"></div>
+    <div class="signature">Con amor, tu Dani ❤️</div>
+  </article>
+</div>
+
+<script>
+const cartas = [
+  {
+    titulo:"Cuando me extrañes",
+    emoji:"💌",
+    vista:"Por si quisieras tenerme cerquita aunque estemos lejos.",
+    texto:`Mi pulguita, si estás leyendo esto porque me extrañas, imagina que te estoy dando uno de esos abrazos en los que no hace falta decir nada.
+
+Aunque ahora no esté a tu lado, quiero que recuerdes que hay alguien que piensa en ti y que sonríe por tenerte en su vida. Ojalá pudiera aparecer un ratito, abrazarte fuerte y hacerte cosquillitas hasta sacarte una sonrisa.
+
+Te mando un beso enorme, mi niña. ❤️`
+  },
+  {
+    titulo:"Cuando estés triste",
+    emoji:"🌧️",
+    vista:"No necesitas fingir que todo está bien.",
+    texto:`Mi amor, no tienes que esconder tu tristeza ni disculparte por tener un día difícil.
+
+No siempre voy a saber qué decir para arreglar las cosas, pero puedo escucharte, acompañarte o quedarme contigo en silencio si eso es lo que necesitas.
+
+Ve despacito, respira y date permiso de sentir. No tienes que resolverlo todo hoy. Te quiero también en los días grises, mi pulguita. 🫂`
+  },
+  {
+    titulo:"Cuando todo te supere",
+    emoji:"🫂",
+    vista:"Un recordatorio para respirar y descansar.",
+    texto:`Mi niña, sé amable contigo misma. Has llegado hasta aquí incluso en días que quizá te han costado muchísimo.
+
+No tienes que solucionar todo de una vez ni ser fuerte a cada segundo. Puedes descansar, tomar aire y avanzar poquito a poquito.
+
+Si quieres contarme qué pasa, te escucho. Si no sabes cómo explicarlo, podemos empezar por un simple “hoy no estoy bien”. No tienes que encontrar las palabras perfectas. Estoy aquí para ti. 💗`
+  },
+  {
+    titulo:"Cuando pienses que estás sola",
+    emoji:"🌙",
+    vista:"Una pequeña luz para una noche complicada.",
+    texto:`Pulguita, aunque a veces tu cabecita te haga sentir que tienes que con todo por tu cuenta, recuerda que no tienes que hacerlo siempre así.
+
+Hay espacio para ti conmigo, para tus dudas, tus silencios y tus días raros. No tienes que ganarte mi cariño siendo perfecta ni estando siempre feliz.
+
+Ojalá estas palabras te hagan sentir un poquito más acompañada esta noche. Te mando un abrazo de esos que duran mucho. ✨`
+  },
+  {
+    titulo:"Cuando necesites un abrazo",
+    emoji:"🐻",
+    vista:"Advertencia: abrazo escrito muy apretado.",
+    texto:`Ven acá, mi pulguita. 🫂
+
+Te abrazo suavecito primero, y después fuerte, como si quisiera decirte sin palabras que puedes descansar un ratito.
+
+Te acomodo en mis brazos, te doy un besito en la frente y me quedo contigo todo el tiempo que necesites. No hace falta hablar ni explicar nada.
+
+Este abrazo no soluciona el mundo, pero ojalá te recuerde que mereces cariño, calma y ternura. 💞`
+  },
+  {
+    titulo:"Cuando dudes de mi cariño",
+    emoji:"💗",
+    vista:"Por si necesitas recordar lo importante que eres.",
+    texto:`Mi amor, no eres importante para mí solamente cuando sonríes o cuando todo entre nosotros está perfecto.
+
+Me importas por quien eres, con tus ocurrencias, tus gustos, tus miedos, tus días felices y esos momentos en los que ni tú sabes qué sientes.
+
+No quiero que tengas que demostrar nada para merecer cariño. Quiero seguir conociéndote, cuidando lo nuestro y aprendiendo a quererte de la manera que te haga sentir segura. Te quiero mucho, mi pulguita. ❤️`
+  },
+  {
+    titulo:"Antes de dormir",
+    emoji:"🌠",
+    vista:"Un besito de buenas noches, incluso desde lejos.",
+    texto:`Buenas noches, mi niña bonita. 🌙
+
+Ojalá esta noche puedas soltar un poquito las preocupaciones y descansar. Que tu almohada sea cómoda, que tus sueños sean lindos y que mañana encuentres alguna razón pequeña para sonreír.
+
+Si hoy fue un día difícil, no tienes que llevártelo entero a mañana. Descansa, respira y recuerda que mereces paz.
+
+Te mando muchos besitos y un abrazo hasta que te quedes dormidita. Dulces sueños, mi pulguita. 💗`
+  },
+  {
+    titulo:"Para hacerte sonreír",
+    emoji:"🐣",
+    vista:"Una misión pequeñita: regalarte una sonrisa.",
+    texto:`¡Oye, tú! Sí, tú, la niña bonita que está leyendo esto. 🫵💗
+
+Tengo una queja formal: ¿cómo haces para aparecer en mis pensamientos hasta cuando estoy haciendo cualquier cosa?
+
+Si pudiera, te cobraría una multa por robarme tantas sonrisas… pero como eres mi pulguita, la multa será un abrazo, un beso y que me cuentes una de tus ocurrencias.
+
+Ahora intenta sonreír aunque sea un poquito. Misión cumplida si lo logré. 😚`
+  },
+  {
+    titulo:"Cuando no sepas cómo contarme",
+    emoji:"🫶",
+    vista:"No necesitas tenerlo todo ordenado para hablar conmigo.",
+    texto:`Mi pulguita, puedes empezar por donde puedas. No tienes que saber explicar exactamente qué te pasa ni tener una razón que parezca suficiente.
+
+Puedes decirme “no sé qué siento”, “necesito que me escuches” o simplemente “¿puedes quedarte conmigo un rato?”.
+
+Voy a intentar escucharte sin juzgarte y sin apresurarte a sentirte mejor. No puedo prometer que siempre tendré la respuesta perfecta, pero sí quiero esforzarme por entenderte.
+
+Y si necesitas espacio, dímelo con confianza: podemos encontrar una forma de respetar tus tiempos sin que tengas que sentirte sola. Te quiero. ❤️`
+  },
+  {
+    titulo:"Cuando te alejes un poquito",
+    emoji:"🕊️",
+    vista:"La carta más importante: quiero que confíes en mí.",
+    especial:true,
+    texto:`Mi pulguita, sé que quizás no estás pasando por un buen momento. No sé exactamente todo lo que pasa por tu cabecita ni quiero asumir que sé cómo te sientes, pero he notado que cuando te sientes así sueles alejarte un poquito.
+
+Y quiero que sepas algo, mi niña: no tienes que pasar por todo eso tú solita.
+
+No quiero presionarte para que me cuentes las cosas ni obligarte a hablar cuando todavía no estás preparada. Solo quiero que tengas la confianza de saber que puedes acudir a mí, incluso cuando no sepas qué decir, cuando estés triste o cuando ni tú misma entiendas lo que sientes.
+
+No tienes que estar feliz todo el tiempo conmigo. No tienes que fingir que todo está bien para que yo me quede. También quiero estar contigo en esos días en los que no tienes ganas de nada, en los que necesitas silencio, un abrazo o simplemente a alguien que te escuche.
+
+Mi amor, no voy a dejarte sola solo porque estés pasando por un momento difícil. Quiero acompañarte, escucharte y aprender a entenderte, pero también quiero que me permitas acercarme a ti. Dame la confianza de poder estar para ti, así como tú puedes contar conmigo.
+
+Y si necesitas tu espacio, también voy a respetarlo. Solo quiero que recuerdes que tener un día malo no te hace menos merecedora de amor, y que no tienes que resolverlo todo antes de volver a acercarte a mí.
+
+Te quiero muchísimo, mi pulguita. No necesito que estés bien todos los días para quererte. ❤️`
+  },
+  {
+    titulo:"Lo que quiero que recuerdes",
+    emoji:"♾️",
+    vista:"Un último sobre lleno de cariño.",
+    texto:`Mi pulguita, si algún día olvidas todo lo bonito que mereces, vuelve a leer esta carta.
+
+Mereces que te escuchen, que respeten tus tiempos, que te hablen con cariño y que puedas ser tú misma sin miedo a no estar bien.
+
+Yo también estoy aprendiendo. No siempre voy a saber cómo ayudarte, pero quiero que podamos hablar, entendernos y cuidarnos mutuamente.
+
+Gracias por formar parte de mi vida y por cada momento que compartimos. Ojalá sigamos creando recuerdos bonitos, riéndonos por tonterías y encontrando maneras de estar cerca incluso en los días complicados.
+
+Te quiero, mi pulguita. Hoy, mañana y en todos esos pequeños momentos que hacen especial quererte. ❤️`
+  }
+];
+
+const contenedor = document.getElementById("letters");
+const modal = document.getElementById("modal");
+
+cartas.forEach((carta, index) => {
+  const card = document.createElement("button");
+  card.type = "button";
+  card.className = "letter-card" + (carta.especial ? " special" : "");
+  card.innerHTML = `<span class="envelope">${carta.emoji}</span>
+    <h3>${carta.titulo}</h3><p>${carta.vista}</p>`;
+  card.addEventListener("click", () => abrirCarta(index));
+  contenedor.appendChild(card);
+});
+
+function abrirCarta(index) {
+  const carta = cartas[index];
+  document.getElementById("modalEmoji").textContent = carta.emoji;
+  document.getElementById("modalTitle").textContent = carta.titulo;
+  document.getElementById("modalMessage").textContent = carta.texto;
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+  document.getElementById("closeBtn").focus();
+}
+function cerrarCarta() {
+  modal.classList.remove("show");
+  document.body.style.overflow = "";
+}
+document.getElementById("closeBtn").addEventListener("click", cerrarCarta);
+modal.addEventListener("click", event => { if (event.target === modal) cerrarCarta(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape") cerrarCarta(); });
+
+document.getElementById("surpriseBtn").addEventListener("click", () => {
+  const index = Math.floor(Math.random() * cartas.length);
+  abrirCarta(index);
+});
+document.getElementById("heartBtn").addEventListener("click", () => {
+  document.getElementById("secret").classList.add("show");
+  for (let i = 0; i < 24; i++) crearCorazon();
+});
+
+const stars = document.getElementById("stars");
+for (let i = 0; i < 100; i++) {
+  const star = document.createElement("span");
+  star.className = "star";
+  const size = Math.random() * 3 + 1;
+  star.style.width = size + "px";
+  star.style.height = size + "px";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  star.style.animationDuration = (2 + Math.random() * 4) + "s";
+  stars.appendChild(star);
+}
+function crearCorazon() {
+  const heart = document.createElement("span");
+  heart.className = "float-heart";
+  heart.textContent = ["💗","💖","💕","✨","🌸"][Math.floor(Math.random()*5)];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (16 + Math.random() * 22) + "px";
+  heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 8500);
+}
+</script>
+</body>
+</html>
